@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import api from '../services/api';
+import axios from 'axios';
+
+// Use environment variable for API base URL
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 import { FiDollarSign, FiTrendingUp, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 
 interface InvestmentFormProps {
@@ -32,7 +35,7 @@ interface Returns {
 }
 
 const InvestmentForm: React.FC<InvestmentFormProps> = ({ planId, onSuccess, onCancel }) => {
-  const { user } = useAuth();
+  const { /* user */ } = useAuth(); // Commented out unused variable
   const navigate = useNavigate();
   const [amount, setAmount] = useState<string>('');
   const [plan, setPlan] = useState<Plan | null>(null);
@@ -51,8 +54,8 @@ const InvestmentForm: React.FC<InvestmentFormProps> = ({ planId, onSuccess, onCa
         
         // Use Promise.all to fetch data in parallel
         const [planResponse, userResponse] = await Promise.all([
-          api.get(`/investments/${planId}`),
-          api.get('/users/wallet')
+          axios.get(`${apiBaseUrl}/api/investments/${planId}`),
+          axios.get(`${apiBaseUrl}/api/users/wallet`)
         ]);
         
         // Log the response for debugging
@@ -126,7 +129,7 @@ const InvestmentForm: React.FC<InvestmentFormProps> = ({ planId, onSuccess, onCa
       setError(null);
       
       // Create investment
-      const response = await api.post('/investments', {
+      await axios.post(`${apiBaseUrl}/api/investments`, {
         planId,
         amount: parseFloat(amount)
       });

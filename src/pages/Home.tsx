@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
   FaUsers, FaTasks, FaHandshake, FaAward, FaLeaf, FaBuilding, FaBitcoin, 
-  FaDollarSign, FaInfoCircle, FaChartLine, FaShieldAlt, FaFacebook, FaTwitter, 
-  FaGooglePlus, FaInstagram, FaLinkedin, FaAngleDown
+  FaDollarSign, FaInfoCircle, FaChartLine, FaShieldAlt, FaAngleDown
+  // Removed unused icons: FaFacebook, FaTwitter, FaGooglePlus, FaInstagram, FaLinkedin
 } from 'react-icons/fa';
 import { GiGoldBar } from 'react-icons/gi';
 import CountUp from 'react-countup';
