@@ -133,9 +133,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           throw new Error('Invalid response format: token not found');
         }
         
+        // Store user data and token regardless of subsequent API calls
         localStorage.setItem('token', authToken);
         setToken(authToken);
         setUser(userData);
+        
+        // No need to fetch investment plans here, they'll be fetched in the useEffect
       } else {
         throw new Error('Invalid response format');
       }

@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import AppLayout from './components/AppLayout';
+import ErrorBoundary from './components/ErrorBoundary';
 import './App.css';
 
 // Import CSS frameworks
@@ -36,11 +37,12 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 function App() {
   return (
-    <AuthProvider>
-      <ToastProvider>
-        <Router>
-          <Suspense fallback={<div className="loading">Loading...</div>}>
-            <Routes>
+    <ErrorBoundary>
+      <AuthProvider>
+        <ToastProvider>
+          <Router>
+            <Suspense fallback={<div className="loading">Loading...</div>}>
+              <Routes>
               {/* Public Routes */}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -116,7 +118,8 @@ function App() {
         </Router>
       </ToastProvider>
     </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
-export default App
+export default App;
