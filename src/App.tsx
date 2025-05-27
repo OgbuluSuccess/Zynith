@@ -16,7 +16,9 @@ const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 
 // These will be implemented later
-const Home = lazy(() => import('./pages/Home'));
+// Using SimplifiedHome instead of regular Home to troubleshoot white screen issue
+const Home = lazy(() => import('./pages/SimplifiedHome'));
+// const Home = lazy(() => import('./pages/Home'));
 const Investments = lazy(() => import('./pages/Investments'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const Transactions = lazy(() => import('./pages/Transactions'));
