@@ -17,8 +17,16 @@
       "dest": "/api/$1"
     },
     {
+      "src": "/fallback",
+      "dest": "/fallback.html"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/fallback.html",
+      "status": 200
     }
   ]
 }
